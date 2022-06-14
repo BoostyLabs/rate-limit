@@ -1,4 +1,4 @@
-module rate-limit
+module github.com/BoostyLabs/rate-limit
 
 go 1.17
 
