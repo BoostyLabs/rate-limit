@@ -9,10 +9,9 @@ import (
 	"testing"
 	"time"
 
+	ratelimit "github.com/BoostyLabs/rate-limit"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
-
-	ratelimit "rate-limit"
 )
 
 func TestRateLimiter(t *testing.T) {
