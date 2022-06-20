@@ -6,21 +6,21 @@ import (
 	"github.com/google/uuid"
 )
 
-// RateLimiterEvent allows preventing multiple events from events.
-type RateLimiterEvent struct {
+// EventRateLimiter allows preventing multiple events from events.
+type EventRateLimiter struct {
 	mu          sync.Mutex
 	rateLimited map[uuid.UUID]bool
 }
 
-// NewRateLimiterEvent is a constructor for NewRateLimiterEvent.
-func NewRateLimiterEvent() *RateLimiterEvent {
-	return &RateLimiterEvent{
+// NewEventRateLimiter is a constructor for NewRateLimiterEvent.
+func NewEventRateLimiter() *EventRateLimiter {
+	return &EventRateLimiter{
 		rateLimited: make(map[uuid.UUID]bool),
 	}
 }
 
 // IsAllowed indicates if event is allowed to happen.
-func (rateLimiter *RateLimiterEvent) IsAllowed(key uuid.UUID) bool {
+func (rateLimiter *EventRateLimiter) IsAllowed(key uuid.UUID) bool {
 	allow, exists := rateLimiter.rateLimited[key]
 	if exists {
 		return allow
@@ -30,7 +30,7 @@ func (rateLimiter *RateLimiterEvent) IsAllowed(key uuid.UUID) bool {
 }
 
 // SetLimit sets limit from the list of rate limited entities.
-func (rateLimiter *RateLimiterEvent) SetLimit(userID uuid.UUID) error {
+func (rateLimiter *EventRateLimiter) SetLimit(userID uuid.UUID) error {
 	rateLimiter.mu.Lock()
 	defer rateLimiter.mu.Unlock()
 
@@ -39,7 +39,7 @@ func (rateLimiter *RateLimiterEvent) SetLimit(userID uuid.UUID) error {
 }
 
 // AllowFormEvent allowed event.
-func (rateLimiter *RateLimiterEvent) AllowFormEvent(key uuid.UUID) {
+func (rateLimiter *EventRateLimiter) AllowFormEvent(key uuid.UUID) {
 	rateLimiter.mu.Lock()
 	defer rateLimiter.mu.Unlock()
 
