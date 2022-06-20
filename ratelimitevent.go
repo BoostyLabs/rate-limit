@@ -2,7 +2,6 @@ package ratelimit
 
 import (
 	"sync"
-	"time"
 
 	"github.com/google/uuid"
 )
@@ -14,9 +13,9 @@ type RateLimiterEvent struct {
 }
 
 // NewRateLimiterEvent is a constructor for NewRateLimiter.
-func NewRateLimiterEvent() *RateLimiter {
-	return &RateLimiter{
-		rateLimited: make(map[uuid.UUID]time.Time),
+func NewRateLimiterEvent() *RateLimiterEvent {
+	return &RateLimiterEvent{
+		rateLimited: make(map[uuid.UUID]bool),
 	}
 }
 
