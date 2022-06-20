@@ -6,7 +6,7 @@ import (
 	"github.com/google/uuid"
 )
 
-// RateLimiterEvent allows preventing multiple events in fixed period of time.
+// RateLimiterEvent allows preventing multiple events from events.
 type RateLimiterEvent struct {
 	mu          sync.Mutex
 	rateLimited map[uuid.UUID]bool
