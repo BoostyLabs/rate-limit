@@ -6,13 +6,13 @@ import (
 	"github.com/google/uuid"
 )
 
-// RateLimiterEvent allows to prevent multiple events in fixed period of time.
+// RateLimiterEvent allows preventing multiple events in fixed period of time.
 type RateLimiterEvent struct {
 	mu          sync.Mutex
 	rateLimited map[uuid.UUID]bool
 }
 
-// NewRateLimiterEvent is a constructor for NewRateLimiter.
+// NewRateLimiterEvent is a constructor for NewRateLimiterEvent.
 func NewRateLimiterEvent() *RateLimiterEvent {
 	return &RateLimiterEvent{
 		rateLimited: make(map[uuid.UUID]bool),
